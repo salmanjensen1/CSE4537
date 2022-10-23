@@ -62,9 +62,14 @@ const deleteBook = async(req, res)=> {
 
 const getUpdateBook = async(req,res)=> {
   try{
-    const data = await books.find({id: req.body.id})
+    console.log(req.query)
+    const data = await books.findById(req.query.id)
     console.log(data)
-    res.render("updateBook", {toUpdate: data[0]})
+    let count
+    // data.forEach(book=>{
+    //   if(book.id === req.body.id)
+    // })
+    res.render("updateBook", {prevBook: data})
   }
   catch(error){
     console.log(error)
@@ -73,14 +78,17 @@ const getUpdateBook = async(req,res)=> {
 
 const postUpdateBook = async(req,res)=> {
   try{
-    filter = {id: req.body.id}
+    
+    filter = req.body.id
+    // console.log(filter)
     update = {
-      name: req.body.name,
-      author: req.body.author,
-      genre: req.body.genre
+      name: req.body.name || books.name,
+      author: req.body.author || books.author,
+      genre: req.body.genre || books.genre
     }
-    const data = await books.findOneAndUpdate(filter, update)
-    console.log(data)
+    
+    await books.findByIdAndUpdate(filter, update)
+    // console.log(data)
     res.redirect("/book-list")
   }
   catch(error){

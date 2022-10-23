@@ -7,7 +7,13 @@
     <title>Books</title>
   </head>
   <body>
-    <form method="POST" action="/update">
+    <h1> Current Status: </h1>
+     
+      <p>Book Name: <%=prevBook.name%></p>
+      <p>Author Name: <%=prevBook.author%></p>
+      <p>Genre: <%=prevBook.genre%></p> 
+    <p> </p>
+    <form method="POST" action="/updates">
       <label for="name">Book name:</label><br />
       <input type="text" id="name" name="name" /><br />
       <label for="author">Author name:</label><br />
@@ -15,6 +21,7 @@
       <label for="genre">Genre:</label><br />
       <input type="text" id="genre" name="genre" /><br />
       <input type="submit" value="Update book" />
+      <input type="hidden" name=id value=<%=prevBook.id %> />
     </form>
   </body>
 </html>

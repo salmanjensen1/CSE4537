@@ -9,7 +9,7 @@ router.post("/delete", bookController.deleteBook)
 router.get("/books", bookController.getBook);
 router.post("/books", bookController.postBook);
 router.get("/update", bookController.getUpdateBook)
-router.post("/update", bookController.postUpdateBook)
+router.post("/updates", bookController.postUpdateBook)
 router.get("/helloWorld", (req, res)=>{
     res.render("helloWorld")
 })
